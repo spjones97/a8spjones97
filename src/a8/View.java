@@ -46,8 +46,9 @@ public class View extends JApplet {
             nextGenButton.addKeyListener(new KeyListener(){
                 @Override
                 public void keyPressed(KeyEvent e) {
-                    if(e.getKeyChar() == KeyEvent.VK_ENTER)
+                    if(e.getKeyChar() == KeyEvent.VK_ENTER) {
                         nextGen();
+                    }
                 }
 
                 @Override
@@ -104,20 +105,21 @@ public class View extends JApplet {
                         public void mouseEntered(MouseEvent e) {
                             if (click) {
                                 Object o = e.getSource();
-                                if (leftButtonPressed)
+                                if (leftButtonPressed) {
                                     ((JLabel) o).setBackground(Color.red);
-                                else
+                                } else {
                                     ((JLabel) o).setBackground(Color.white);
+                                }
                             }
 
                             boolean[][] area2 = new boolean[ROWS_NUMBER][COLS_NUMBER];
-                            for (int i = 0; i < area2.length; i++)
-                            {
+                            for (int i = 0; i < area2.length; i++) {
                                 for (int j = 0; j < area2[0].length; j++) {
-                                    if (area[i][j].getBackground().equals(Color.red))
+                                    if (area[i][j].getBackground().equals(Color.red)) {
                                         area2[i][j] = true;
-                                    else
+                                    } else {
                                         area2[i][j] = false;
+                                    }
                                 }
                             }
 
@@ -161,10 +163,11 @@ public class View extends JApplet {
         boolean[][] area2 = model.getArea();
         for (int i = 0; i < area2.length; i++) {
             for (int j = 0; j < area2[0].length; j++) {
-                if (area2[i][j])
+                if (area2[i][j]) {
                     area[i][j].setBackground(Color.red);
-                else
+                } else {
                     area[i][j].setBackground(Color.white);
+                }
             }
         }
     }
