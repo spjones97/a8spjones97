@@ -11,7 +11,7 @@ public class GameOfLife {
 		view.isStandalone = true;
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("The game of life");
+		frame.setTitle("Conway's Game of Life");
 		frame.getContentPane().add(view, BorderLayout.CENTER);
 		view.init();
 		view.start();

@@ -1,6 +1,6 @@
 package a8;
 
-public class Model implements Cloneable {
+public class Model {
     private boolean[][] area;
     private boolean ball;
     private int rowsNumber, colsNumber;
@@ -449,7 +449,7 @@ public class Model implements Cloneable {
         return areaCopy;
     }
 
-    protected Object clone() {
+    protected Model clone() {
         Model v = new Model(rowsNumber, colsNumber, ball);
         v.area = this.copyArea();
         return v;

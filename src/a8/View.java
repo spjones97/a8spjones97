@@ -8,7 +8,6 @@ import javax.swing.*;
 public class View extends JApplet {
     private static final int ROWS_NUMBER = 20;
     private static final int COLS_NUMBER = 30;
-    private int stationary;
     private boolean leftButtonPressed;
     private boolean change = false;
     private boolean click = false;
@@ -21,14 +20,11 @@ public class View extends JApplet {
     private JPanel jPanel4 = new JPanel();
     private GridLayout gridLayout1 = new GridLayout();
     private JButton nextGenButton = new JButton();
-    private JButton aboutButton = new JButton();
     private JButton eraseButton = new JButton();
     private JCheckBox ballCheckbox = new JCheckBox();
-    private JLabel stationaryLabel = new JLabel();
 
-    // Initialize the applet
     @Override
-    public void init() {
+    public void start() {
         try {
             this.setSize(new Dimension(420, 320));
             jPanel1.setLayout(null);
@@ -72,20 +68,14 @@ public class View extends JApplet {
             eraseButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    for (int i = 0; i < area.length; i++)
-                        for (int j = 0; j < area[0].length; j++)
+                    for (int i = 0; i < area.length; i++) {
+                        for (int j = 0; j < area[0].length; j++) {
                             area[i][j].setBackground(Color.white);
-
+                        }
+                    }
                     model.clearArea();
-                    stationaryLabel.setText("0");
                 }
             });
-            stationaryLabel.setFont(new java.awt.Font("Dialog", 1, 12));
-            stationaryLabel.setBorder(BorderFactory.createRaisedBevelBorder());
-            stationaryLabel.setPreferredSize(new Dimension(4, 4));
-            stationaryLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            stationaryLabel.setText("0");
-            stationaryLabel.setBounds(new Rectangle(283, 7, 42, 25));
             jPanel4.setBackground(Color.BLACK);
             jPanel4.setBorder(BorderFactory.createLoweredBevelBorder());
             jPanel4.setBounds(new Rectangle(14, 8, 392, 250));
@@ -93,10 +83,8 @@ public class View extends JApplet {
             jPanel1.setBorder(BorderFactory.createLineBorder(Color.black));
             this.getContentPane().add(jPanel1, BorderLayout.CENTER);
             jPanel3.add(ballCheckbox, null);
-            jPanel3.add(stationaryLabel, null);
             jPanel3.add(eraseButton, null);
             jPanel3.add(nextGenButton, null);
-            jPanel3.add(aboutButton, null);
             jPanel1.add(jPanel4, null);
             jPanel4.add(jPanel2, null);
             jPanel1.add(jPanel3, null);
@@ -137,7 +125,8 @@ public class View extends JApplet {
                         }
 
                         @Override
-                        public void mouseExited(MouseEvent e) {}
+                        public void mouseExited(MouseEvent e) {
+                        }
 
                         @Override
                         public void mousePressed(MouseEvent e) {
@@ -166,31 +155,13 @@ public class View extends JApplet {
         }
     }
 
-    private void nextGen()
-    {
-        if (change) {
-            change = false;
-
-            stationary = model.getStationary();
-
-            if (stationary == -1)
-                stationaryLabel.setText("X");
-            else
-                stationaryLabel.setText(Integer.toString(stationary));
-        }
-
-        if (stationary > 0) {
-            if (Integer.parseInt(stationaryLabel.getText()) > 0)
-                stationaryLabel.setText(Integer.toString(Integer.parseInt(stationaryLabel.getText()) - 1));
-        }
-
+    private void nextGen() {
         model.nextGen();
 
         boolean[][] area2 = model.getArea();
-        for (int i = 0; i < area2.length; i++)
-        {
+        for (int i = 0; i < area2.length; i++) {
             for (int j = 0; j < area2[0].length; j++) {
-                if (area2[i][j] == true)
+                if (area2[i][j])
                     area[i][j].setBackground(Color.red);
                 else
                     area[i][j].setBackground(Color.white);
