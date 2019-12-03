@@ -1,10 +1,23 @@
 package a8;
 
-import java.util.*;
+import java.awt.*;
 
-public class Main {
+import javax.swing.*;
+
+public class GameOfLife {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		View view = new View();
+		view.isStandalone = true;
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("The game of life");
+		frame.getContentPane().add(view, BorderLayout.CENTER);
+		view.init();
+		view.start();
+		frame.setSize(425, 350);
+		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation((d.width - frame.getSize().width) / 2, (d.height - frame.getSize().height) / 2);
+		frame.setVisible(true);
 	}
 }
