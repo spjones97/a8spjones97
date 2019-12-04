@@ -2,13 +2,13 @@ package a8;
 
 public class Model {
     private boolean[][] area;
-    private boolean ball;
+    private boolean there;
     private int rowsNumber, colsNumber;
 
     public Model(int rowsNumber, int colsNumber, boolean ball) {
         this.rowsNumber = rowsNumber;
         this.colsNumber = colsNumber;
-        this.ball = ball;
+        this.there = ball;
         this.area = new boolean[rowsNumber][colsNumber];
     }
 
@@ -18,7 +18,7 @@ public class Model {
 
         for (row = 0; row < rowsNumber; row++) {
             for (col = 0; col < colsNumber; col++) {
-                if (ball) {
+                if (there) {
                     if (row == 0 && col == 0) {
                         if (areaCopy[rowsNumber - 1][colsNumber - 1]) {
                             cell++;
@@ -450,7 +450,7 @@ public class Model {
     }
 
     protected Model clone() {
-        Model v = new Model(rowsNumber, colsNumber, ball);
+        Model v = new Model(rowsNumber, colsNumber, there);
         v.area = this.copyArea();
         return v;
     }

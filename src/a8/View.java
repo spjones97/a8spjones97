@@ -2,6 +2,8 @@ package a8;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
@@ -49,6 +51,7 @@ public class View extends JApplet {
                     if(e.getKeyChar() == KeyEvent.VK_ENTER) {
                         nextGen();
                     }
+
                 }
 
                 @Override
@@ -154,6 +157,13 @@ public class View extends JApplet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addActionListener(ActionListener l) {
+        for (Component c: jPanel1.getComponents()) {
+            JButton b = (JButton) c;
+            b.addActionListener(l);
         }
     }
 
