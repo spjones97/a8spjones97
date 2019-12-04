@@ -66,7 +66,7 @@ public class View extends JApplet {
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < area.length; i++) {
                     for (int j = 0; j < area[0].length; j++) {
-                        area[i][j].setBackground(Color.white);
+                        area[i][j].setBackground(Color.BLACK); // Color of board after clear button pressed
                     }
                 }
                 model.clearArea();
@@ -85,9 +85,9 @@ public class View extends JApplet {
         for (int i = 0; i < area.length; i++) {
             for (int j = 0; j < area[0].length; j++) {
                 area[i][j] = new JLabel();
-                area[i][j].setBackground(Color.white);
+                area[i][j].setBackground(Color.BLACK); // Background color of board
                 area[i][j].setOpaque(true);
-                area[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
+                area[i][j].setBorder(BorderFactory.createLineBorder(Color.darkGray)); // Border color of cells
                 area[i][j].addMouseListener(new MouseListener(){
                     @Override
                     public void mouseClicked(MouseEvent e) {}
@@ -97,16 +97,16 @@ public class View extends JApplet {
                         if (click) {
                             Object o = e.getSource();
                             if (leftButtonPressed) {
-                                ((JLabel) o).setBackground(Color.red);
+                                ((JLabel) o).setBackground(Color.yellow); // Color of gen
                             } else {
-                                ((JLabel) o).setBackground(Color.white);
+                                ((JLabel) o).setBackground(Color.black); // Color of empty cell
                             }
                         }
 
                         boolean[][] area2 = new boolean[ROWS_NUMBER][COLS_NUMBER];
                         for (int i = 0; i < area2.length; i++) {
                             for (int j = 0; j < area2[0].length; j++) {
-                                if (area[i][j].getBackground().equals(Color.red)) {
+                                if (area[i][j].getBackground().equals(Color.yellow)) {
                                     area2[i][j] = true;
                                 } else {
                                     area2[i][j] = false;
@@ -127,10 +127,10 @@ public class View extends JApplet {
                         Object o = e.getSource();
                         if (e.getButton() == MouseEvent.BUTTON1) {
                             leftButtonPressed = true;
-                            ((JLabel) o).setBackground(Color.red);
+                            ((JLabel) o).setBackground(Color.yellow); // Color of gen
                         } else if (e.getButton() == MouseEvent.BUTTON3) {
                             leftButtonPressed = false;
-                            ((JLabel) o).setBackground(Color.white);
+                            ((JLabel) o).setBackground(Color.black); // Color of empty cell
                         }
                     }
 
@@ -158,9 +158,9 @@ public class View extends JApplet {
         for (int i = 0; i < area2.length; i++) {
             for (int j = 0; j < area2[0].length; j++) {
                 if (area2[i][j]) {
-                    area[i][j].setBackground(Color.red);
+                    area[i][j].setBackground(Color.yellow); // Color of gen
                 } else {
-                    area[i][j].setBackground(Color.white);
+                    area[i][j].setBackground(Color.black); // Color of empty cell
                 }
             }
         }
