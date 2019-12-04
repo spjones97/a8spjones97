@@ -9,9 +9,7 @@ public class View extends JApplet {
     private static final int ROWS_NUMBER = 20;
     private static final int COLS_NUMBER = 30;
     private boolean leftButtonPressed;
-    private boolean change = false;
     private boolean click = false;
-    protected boolean isStandalone = false;
     private Model model = new Model(ROWS_NUMBER, COLS_NUMBER, false);
     private JLabel[][] area = new JLabel[ROWS_NUMBER][COLS_NUMBER];
     private JPanel oneJPanel = new JPanel();
@@ -27,14 +25,12 @@ public class View extends JApplet {
         this.setSize(new Dimension(420, 320));
         oneJPanel.setLayout(null);
         twoJPanel.setBackground(Color.black);
-        twoJPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         twoJPanel.setBounds(new Rectangle(16, 11, 362, 227));
         twoJPanel.setLayout(gridLayout1);
         gridLayout1.setColumns(COLS_NUMBER);
         gridLayout1.setHgap(0);
         gridLayout1.setRows(ROWS_NUMBER);
         gridLayout1.setVgap(0);
-        threeJPanel.setBorder(BorderFactory.createRaisedBevelBorder());
         threeJPanel.setBounds(new Rectangle(19, 268, 384, 39));
         threeJPanel.setLayout(null);
         nextGenButton.setBounds(new Rectangle(182, 6, 83, 26));
@@ -76,11 +72,8 @@ public class View extends JApplet {
                 model.clearArea();
             }
         });
-        jPanel4.setBackground(Color.BLACK);
-        jPanel4.setBorder(BorderFactory.createLoweredBevelBorder());
         jPanel4.setBounds(new Rectangle(14, 8, 392, 250));
         jPanel4.setLayout(null);
-        oneJPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         this.getContentPane().add(oneJPanel, BorderLayout.CENTER);
         threeJPanel.add(ballCheckbox, null);
         threeJPanel.add(eraseButton, null);
@@ -130,7 +123,6 @@ public class View extends JApplet {
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        change = true;
                         click = true;
                         Object o = e.getSource();
                         if (e.getButton() == MouseEvent.BUTTON1) {

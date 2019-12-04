@@ -6,11 +6,11 @@ public class Model {
     private int rows;
     private int cols;
 
-    public Model(int rowsNumber, int colsNumber, boolean there) {
-        this.rows = rowsNumber;
-        this.cols = colsNumber;
-        this.there = there;
-        this.area = new boolean[rowsNumber][colsNumber];
+    public Model(int _rows, int _cols, boolean _there) {
+        this.rows = _rows;
+        this.cols = _cols;
+        this.there = _there;
+        this.area = new boolean[_rows][_cols];
     }
 
     public void nextGeneration() {
