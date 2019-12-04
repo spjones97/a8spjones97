@@ -3,39 +3,41 @@ package a8;
 public class Model {
     private boolean[][] area;
     private boolean there;
-    private int rowsNumber, colsNumber;
+    private int rows;
+    private int cols;
 
-    public Model(int rowsNumber, int colsNumber, boolean ball) {
-        this.rowsNumber = rowsNumber;
-        this.colsNumber = colsNumber;
-        this.there = ball;
+    public Model(int rowsNumber, int colsNumber, boolean there) {
+        this.rows = rowsNumber;
+        this.cols = colsNumber;
+        this.there = there;
         this.area = new boolean[rowsNumber][colsNumber];
     }
 
     public void nextGen() {
         int cell = 0, row, col;
-        boolean[][] areaCopy = this.copyArea();
+        boolean[][] areaCopy = this.copyOfArea();
 
-        for (row = 0; row < rowsNumber; row++) {
-            for (col = 0; col < colsNumber; col++) {
+        // Sought out help with nextGen algorithm
+        for (row = 0; row < rows; row++) {
+            for (col = 0; col < cols; col++) {
                 if (there) {
                     if (row == 0 && col == 0) {
-                        if (areaCopy[rowsNumber - 1][colsNumber - 1]) {
+                        if (areaCopy[rows - 1][cols - 1]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][col]) {
+                        if (areaCopy[rows - 1][col]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][col + 1]) {
+                        if (areaCopy[rows - 1][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[row][colsNumber - 1]) {
+                        if (areaCopy[row][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[row + 1][colsNumber - 1]) {
+                        if (areaCopy[row + 1][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row + 1][col]) {
@@ -44,14 +46,14 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row == 0 && col == colsNumber - 1) {
-                        if (areaCopy[rowsNumber - 1][col - 1]) {
+                    } else if (row == 0 && col == cols - 1) {
+                        if (areaCopy[rows - 1][col - 1]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][col]) {
+                        if (areaCopy[rows - 1][col]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][0]) {
+                        if (areaCopy[rows - 1][0]) {
                             cell++;
                         }
                         if (areaCopy[row][col - 1]) {
@@ -69,8 +71,8 @@ public class Model {
                         if (areaCopy[row + 1][0]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col == 0) {
-                        if (areaCopy[row - 1][colsNumber - 1]) {
+                    } else if (row == rows - 1 && col == 0) {
+                        if (areaCopy[row - 1][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row - 1][col]) {
@@ -79,13 +81,13 @@ public class Model {
                         if (areaCopy[row - 1][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[row][colsNumber - 1]) {
+                        if (areaCopy[row][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[0][colsNumber - 1]) {
+                        if (areaCopy[0][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[0][col]) {
@@ -94,7 +96,7 @@ public class Model {
                         if (areaCopy[0][col + 1]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col == colsNumber - 1) {
+                    } else if (row == rows - 1 && col == cols - 1) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -119,14 +121,14 @@ public class Model {
                         if (areaCopy[0][0]) {
                             cell++;
                         }
-                    } else if (row == 0 && col != colsNumber - 1) {
-                        if (areaCopy[rowsNumber - 1][col - 1]) {
+                    } else if (row == 0 && col != cols - 1) {
+                        if (areaCopy[rows - 1][col - 1]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][col]) {
+                        if (areaCopy[rows - 1][col]) {
                             cell++;
                         }
-                        if (areaCopy[rowsNumber - 1][col + 1]) {
+                        if (areaCopy[rows - 1][col + 1]) {
                             cell++;
                         }
                         if (areaCopy[row][col - 1]) {
@@ -144,7 +146,7 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col != colsNumber - 1 && col != 0) {
+                    } else if (row == rows - 1 && col != cols - 1 && col != 0) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -169,8 +171,8 @@ public class Model {
                         if (areaCopy[0][col + 1]) {
                             cell++;
                         }
-                    } else if (row != rowsNumber - 1 && row != 0 && col == 0) {
-                        if (areaCopy[row - 1][colsNumber - 1]) {
+                    } else if (row != rows - 1 && row != 0 && col == 0) {
+                        if (areaCopy[row - 1][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row - 1][col]) {
@@ -179,13 +181,13 @@ public class Model {
                         if (areaCopy[row - 1][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[row][colsNumber - 1]) {
+                        if (areaCopy[row][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row][col + 1]) {
                             cell++;
                         }
-                        if (areaCopy[row + 1][colsNumber - 1]) {
+                        if (areaCopy[row + 1][cols - 1]) {
                             cell++;
                         }
                         if (areaCopy[row + 1][col]) {
@@ -194,7 +196,7 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row != rowsNumber - 1 && row != 0 && col == colsNumber - 1) {
+                    } else if (row != rows - 1 && row != 0 && col == cols - 1) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -256,7 +258,7 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row == 0 && col == colsNumber - 1) {
+                    } else if (row == 0 && col == cols - 1) {
                         if (areaCopy[row][col - 1]) {
                             cell++;
                         }
@@ -266,7 +268,7 @@ public class Model {
                         if (areaCopy[row + 1][col]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col == 0) {
+                    } else if (row == rows - 1 && col == 0) {
                         if (areaCopy[row - 1][col]) {
                             cell++;
                         }
@@ -276,7 +278,7 @@ public class Model {
                         if (areaCopy[row][col + 1]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col == colsNumber - 1) {
+                    } else if (row == rows - 1 && col == cols - 1) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -286,7 +288,7 @@ public class Model {
                         if (areaCopy[row][col - 1]) {
                             cell++;
                         }
-                    } else if (row == 0 && col != colsNumber - 1) {
+                    } else if (row == 0 && col != cols - 1) {
                         if (areaCopy[row][col - 1]) {
                             cell++;
                         }
@@ -302,7 +304,7 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row == rowsNumber - 1 && col != colsNumber - 1 && col != 0) {
+                    } else if (row == rows - 1 && col != cols - 1 && col != 0) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -318,7 +320,7 @@ public class Model {
                         if (areaCopy[row][col + 1]) {
                             cell++;
                         }
-                    } else if (row != rowsNumber - 1 && row != 0 && col == 0) {
+                    } else if (row != rows - 1 && row != 0 && col == 0) {
                         if (areaCopy[row - 1][col]) {
                             cell++;
                         }
@@ -334,7 +336,7 @@ public class Model {
                         if (areaCopy[row + 1][col + 1]) {
                             cell++;
                         }
-                    } else if (row != rowsNumber - 1 && row != 0 && col == colsNumber - 1) {
+                    } else if (row != rows - 1 && row != 0 && col == cols - 1) {
                         if (areaCopy[row - 1][col - 1]) {
                             cell++;
                         }
@@ -391,39 +393,6 @@ public class Model {
         }
     }
 
-    // Calculates stationary generation
-    public int getStationary() {
-        Model v = (Model)this.clone();
-        int stationary = 0;
-
-        for (int i = 0; i < 1000; i++) {
-            boolean[][] areaCopy2 = v.copyArea();
-
-            v.nextGen();
-
-            // Check if the current matrix and the last are equal
-            boolean equal = true;
-            for (int row2 = 0; row2 < rowsNumber; row2++) {
-                for (int col2 = 0; col2 < colsNumber; col2++) {
-                    if (areaCopy2[row2][col2] != v.area[row2][col2]) {
-                        equal = false;
-                        break;
-                    }
-                }
-            }
-
-            if (!equal) {
-                stationary++;
-            }
-        }
-
-        if(stationary < 1000) {
-            return stationary;
-        } else {
-            return -1;
-        }
-    }
-
     public boolean[][] getArea() {
         return area;
     }
@@ -440,18 +409,18 @@ public class Model {
         }
     }
 
-    private boolean[][] copyArea() {
-        boolean[][] areaCopy = new boolean[rowsNumber][colsNumber];
+    private boolean[][] copyOfArea() {
+        boolean[][] newArea = new boolean[rows][cols];
 
-        for (int row = 0; row < rowsNumber; row++) {
-            if (colsNumber >= 0) System.arraycopy(area[row], 0, areaCopy[row], 0, colsNumber);
+        for (int row = 0; row < rows; row++) {
+            if (cols >= 0) System.arraycopy(area[row], 0, newArea[row], 0, cols);
         }
-        return areaCopy;
+        return newArea;
     }
 
     protected Model clone() {
-        Model v = new Model(rowsNumber, colsNumber, there);
-        v.area = this.copyArea();
-        return v;
+        Model view = new Model(rows, cols, there);
+        view.area = this.copyOfArea();
+        return view;
     }
 }
