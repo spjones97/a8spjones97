@@ -23,7 +23,6 @@ public class View extends JApplet {
     private JButton eraseButton = new JButton();
     private JCheckBox ballCheckbox = new JCheckBox();
 
-    @Override
     public void start() {
         this.setSize(new Dimension(420, 320));
         oneJPanel.setLayout(null);
@@ -46,7 +45,7 @@ public class View extends JApplet {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    nextGen();
+                    nextGeneration();
                 }
 
             }
@@ -60,7 +59,7 @@ public class View extends JApplet {
         nextGenButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                nextGen();
+                nextGeneration();
             }
         });
         eraseButton.setText("Clear");
@@ -90,8 +89,7 @@ public class View extends JApplet {
         jPanel4.add(twoJPanel, null);
         oneJPanel.add(threeJPanel, null);
 
-        for (int i = 0; i < area.length; i++)
-        {
+        for (int i = 0; i < area.length; i++) {
             for (int j = 0; j < area[0].length; j++) {
                 area[i][j] = new JLabel();
                 area[i][j].setBackground(Color.white);
@@ -161,8 +159,8 @@ public class View extends JApplet {
         }
     }
 
-    private void nextGen() {
-        model.nextGen();
+    private void nextGeneration() {
+        model.nextGeneration();
 
         boolean[][] area2 = model.getArea();
         for (int i = 0; i < area2.length; i++) {

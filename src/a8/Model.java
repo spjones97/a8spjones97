@@ -13,7 +13,7 @@ public class Model {
         this.area = new boolean[rowsNumber][colsNumber];
     }
 
-    public void nextGen() {
+    public void nextGeneration() {
         int cell = 0, row, col;
         boolean[][] areaCopy = this.copyOfArea();
 

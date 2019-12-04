@@ -13,7 +13,6 @@ public class GameOfLife {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Conway's Game of Life");
 		frame.getContentPane().add(view, BorderLayout.CENTER);
-		view.init();
 		view.start();
 		frame.setSize(425, 350);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
