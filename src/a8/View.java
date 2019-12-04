@@ -1,13 +1,18 @@
 package a8;
 
+import java.sql.Time;
+import java.util.*;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
+import javax.swing.Timer;
 
 public class View extends JApplet {
-    private static final int ROWS_NUMBER = 20;
-    private static final int COLS_NUMBER = 30;
+    private static final int ROWS_NUMBER = 40;
+    private static final int COLS_NUMBER = 60;
     private boolean leftButtonPressed;
     private boolean click = false;
     private Model model = new Model(ROWS_NUMBER, COLS_NUMBER, false);
@@ -21,20 +26,20 @@ public class View extends JApplet {
     private JButton eraseButton = new JButton();
 
     public void start() {
-        this.setSize(new Dimension(420, 320));
+        this.setSize(new Dimension(840, 640));
         oneJPanel.setLayout(null);
         twoJPanel.setBackground(Color.black);
-        twoJPanel.setBounds(new Rectangle(16, 11, 362, 227));
+        twoJPanel.setBounds(new Rectangle(32, 22, 724, 454));
         twoJPanel.setLayout(gridLayout1);
         gridLayout1.setColumns(COLS_NUMBER);
         gridLayout1.setHgap(0);
         gridLayout1.setRows(ROWS_NUMBER);
         gridLayout1.setVgap(0);
-        threeJPanel.setBounds(new Rectangle(19, 268, 384, 39));
+        threeJPanel.setBounds(new Rectangle(240, 525, 384, 39));
         threeJPanel.setLayout(null);
-        nextGenButton.setBounds(new Rectangle(182, 6, 83, 26));
+        nextGenButton.setBounds(new Rectangle(182, 2, 83, 26));
         nextGenButton.setMargin(new Insets(2, 1, 2, 1));
-        nextGenButton.setText("Next");
+        nextGenButton.setText("Play");
 
         nextGenButton.addKeyListener(new KeyListener(){
             @Override
@@ -54,12 +59,17 @@ public class View extends JApplet {
         nextGenButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                nextGenButton.setText("Faster?");
+                Timer timer = new Timer(200, this);
+                timer.setRepeats(false);
+                timer.start();
                 nextGeneration();
             }
         });
+
         eraseButton.setText("Clear");
         eraseButton.setMargin(new Insets(2, 1, 2, 1));
-        eraseButton.setBounds(new Rectangle(86, 6, 83, 26));
+        eraseButton.setBounds(new Rectangle(86, 2, 83, 26));
         eraseButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,7 +81,7 @@ public class View extends JApplet {
                 model.clearArea();
             }
         });
-        fourJPanel.setBounds(new Rectangle(14, 8, 392, 250));
+        fourJPanel.setBounds(new Rectangle(14, 8, 784, 500));
         fourJPanel.setLayout(null);
         this.getContentPane().add(oneJPanel, BorderLayout.CENTER);
         threeJPanel.add(eraseButton, null);
@@ -146,22 +156,6 @@ public class View extends JApplet {
         for (Component c: oneJPanel.getComponents()) {
             JButton b = (JButton) c;
             b.addActionListener(l);
-        }
-    }
-
-    public void runThrough() {
-        for (int t = 0; t < 10; t++) {
-            model.nextGeneration();
-            boolean[][] area2 = model.getArea();
-            for (int i = 0; i < area2.length; i++) {
-                for (int j = 0; j < area2[0].length; j++) {
-                    if (area2[i][j]) {
-                        area[i][j].setBackground(Color.yellow); // Color of gen
-                    } else {
-                        area[i][j].setBackground(Color.black); // Color of empty cell
-                    }
-                }
-            }
         }
     }
 
