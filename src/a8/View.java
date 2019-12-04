@@ -19,7 +19,6 @@ public class View extends JApplet {
     private GridLayout gridLayout1 = new GridLayout();
     private JButton nextGenButton = new JButton();
     private JButton eraseButton = new JButton();
-    private JCheckBox ballCheckbox = new JCheckBox();
 
     public void start() {
         this.setSize(new Dimension(420, 320));
@@ -75,7 +74,6 @@ public class View extends JApplet {
         fourJPanel.setBounds(new Rectangle(14, 8, 392, 250));
         fourJPanel.setLayout(null);
         this.getContentPane().add(oneJPanel, BorderLayout.CENTER);
-        threeJPanel.add(ballCheckbox, null);
         threeJPanel.add(eraseButton, null);
         threeJPanel.add(nextGenButton, null);
         oneJPanel.add(fourJPanel, null);
@@ -148,6 +146,22 @@ public class View extends JApplet {
         for (Component c: oneJPanel.getComponents()) {
             JButton b = (JButton) c;
             b.addActionListener(l);
+        }
+    }
+
+    public void runThrough() {
+        for (int t = 0; t < 10; t++) {
+            model.nextGeneration();
+            boolean[][] area2 = model.getArea();
+            for (int i = 0; i < area2.length; i++) {
+                for (int j = 0; j < area2[0].length; j++) {
+                    if (area2[i][j]) {
+                        area[i][j].setBackground(Color.yellow); // Color of gen
+                    } else {
+                        area[i][j].setBackground(Color.black); // Color of empty cell
+                    }
+                }
+            }
         }
     }
 
