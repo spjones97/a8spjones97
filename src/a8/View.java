@@ -15,7 +15,7 @@ public class View extends JApplet {
     private JPanel oneJPanel = new JPanel();
     private JPanel twoJPanel = new JPanel();
     private JPanel threeJPanel = new JPanel();
-    private JPanel jPanel4 = new JPanel();
+    private JPanel fourJPanel = new JPanel();
     private GridLayout gridLayout1 = new GridLayout();
     private JButton nextGenButton = new JButton();
     private JButton eraseButton = new JButton();
@@ -72,14 +72,14 @@ public class View extends JApplet {
                 model.clearArea();
             }
         });
-        jPanel4.setBounds(new Rectangle(14, 8, 392, 250));
-        jPanel4.setLayout(null);
+        fourJPanel.setBounds(new Rectangle(14, 8, 392, 250));
+        fourJPanel.setLayout(null);
         this.getContentPane().add(oneJPanel, BorderLayout.CENTER);
         threeJPanel.add(ballCheckbox, null);
         threeJPanel.add(eraseButton, null);
         threeJPanel.add(nextGenButton, null);
-        oneJPanel.add(jPanel4, null);
-        jPanel4.add(twoJPanel, null);
+        oneJPanel.add(fourJPanel, null);
+        fourJPanel.add(twoJPanel, null);
         oneJPanel.add(threeJPanel, null);
 
         for (int i = 0; i < area.length; i++) {
